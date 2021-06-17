@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+   ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Calibri', sans-serif;
+}
+html,body{
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: #ffffff;
+ 
+}
+  h5 {
+  font-family: Calibri; 
+  font-size: 25pt;         
+  font-style: normal; 
+  font-weight: bold; 
+  color:Black;
+  text-align: center; 
+  text-decoration: underline
+}
+
+ input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #459428;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #ffffff;
+    padding: 20px;
+}
+
+</style>
+  
+</style>
+    
+<title>model4</title>
+
+</head>
+ 
+<body>
+<ul>
+  <li><a href="/hpage">Home</a></li>
+  <li><a href="/viewlist">Product</a></li>
+  <li class="dropdown">
+    <a href="" class="dropbtn">Other</a>
+    <div class="dropdown-content">
+      <a href="/viewthree">Category</a>
+      <a href="/viewfour">Price</a>
+      <a href="/viewfive">Feedback</a>
+    </div>
+  </li>
+</ul>
+<h5>Price</h5>
+
+
+<form method="POST" action="/PresList/new">
+<div>
+    <label for="fname">Payment</label>
+    <input type="text" id="fname" name="firstname" placeholder="Amount.." required>
+
+     <label for="type">Methods</label>
+    <select id="type" name="type" >
+      <option value="Food">Gcash</option>
+      <option value="Item">PayMaya</option>
+      <option value="Package">Cash on Delivery</option>
+    </select>
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
+ {% csrf_token %}
+</form>
+</body>   
+</html>
+
+ 
