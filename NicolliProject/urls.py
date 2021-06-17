@@ -3,7 +3,7 @@ from django.contrib import admin
 from PresList import views 
 
 urlpatterns = [    
-    url(r'hpage', views.home_page, name='home_page'),    
+    url(r'hmpage', views.home_page, name='home_page'),    
     #url(r'^PresList/new$', views.new_list, name='new_list'),
     url(r'viewlist/', views.view_list, name='view_list'),   
     url(r'viewthree/', views.view3, name='view3'), 
