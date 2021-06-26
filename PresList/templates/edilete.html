@@ -257,23 +257,22 @@ hr {
 <h5>Product</h5>
 
 
-<form method="POST" action="/new_list">
+<form method="POST" action="update/{{ sender.id }}">
 <div>
-
+{% csrf_token %}
     <label for="pname">First name</label>
-    <input type="text" id="one" name="one" required>
+    <input type="text" id="one" name="one" value="{{ sender.one }}" required>
 
      <label for="pname">Last name</label>
-    <input type="text" id="last" name="last" required>
+    <input type="text" id="last" name="last" value="{{ sender.last }}" required>
 
      <label for="pname">address</label>
-    <input type="text" id="address" name="address" required>
+    <input type="text" id="address" name="address" value="{{ sender.address }}"required>
 
   
     <input type="submit" id="btnsubmit" name="btnsubmit" value="Submit">
 </div>
 
- {% csrf_token %}
 </form>
 
     <table id="listable" name="tr">
@@ -286,10 +285,7 @@ hr {
             <td> <a >{{sender.first_name}}</a></td>
             <td>{{sender.last_name}}</td>
       <td>{{sender.address}}</td>
-      <td><a href='edit/{{sender.id}}'>edit</a></td>
-      <td><a href='delete/{{sender.id}}'>delete</a></td>
-</tr>
- {% endfor %}
+    </tr> {% endfor %}
 </table>
 
 <!-- Footer -->

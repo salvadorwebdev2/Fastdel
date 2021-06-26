@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 ul {
   list-style-type: none;
@@ -99,8 +103,141 @@ div {
   background-color: #ffffff;
   padding: 20px;
 }
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+
+#listable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#listable td, #listable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#listable tr:nth-child(even){background-color: #f2f2f2;}
+
+#listable tr:hover {background-color: #ddd;}
+
+#listable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #616161;
+  color: white;
+}
 </style>
-<title>Student Registration Form</title>
+<title>Product Ordering</title>
 </head>
 <body>
   <ul>
@@ -119,30 +256,51 @@ div {
 <h5>Product</h5>
 
 
-<form method="POST" action="/PresList/new">
+<form method="POST" action="/{{sender.id}}/addsend_id">
 <div>
-
     <label for="pname">Product name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your item.." required>
+    <input type="text" id="prodname" name="prodname" placeholder="Your item.." required>
+
 
     <label for="type">Product type</label>
-    <select id="type" name="type" >
+    <select id="prodtype" name="prodtype" name="type" >
       <option value="Food">Food</option>
       <option value="Item">Fragile</option>
       <option value="Package">Package</option>
     </select>
 
      <label for="type">Product details</label>
-    <select id="type" name="type" >
-      <option value="Food">Pick up</option>
-      <option value="Item">Meet up</option>
+    <select id="proddetails" name="proddetails" >
+      <option value="Pick up">Pick up</option>
+      <option value="Meet up">Meet up</option>
     </select>
 
     <input type="submit" value="Submit">
-  </form>
 </div>
  {% csrf_token %}
 </form>
+
+    <table id="listable" name="tr">
+      <th>Product Name</th>
+      <th>Product Type</th>
+      <th>Product Details</th>
+
+ {% for product in sender.product_set.all %}
+    <tr>
+      <!{{ forloop.counter }}:  -->
+      <td>{{ forloop.counter }} : {{product.product_name }}</td>
+      <td>{{ product.product_type }}</td>
+      <td>{{ product.product_details }}</td>
+    </tr> {% endfor %} </table>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <a href="https://www.facebook.com/nicolli.salvador/"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href="https://www.snapchat.com/add/kolay3000"><i class="fa fa-snapchat w3-hover-opacity"></i></a>
+ </div>
+ <p>Copyright</p>
+</footer>
 
 </body>
 </html>

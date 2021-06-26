@@ -3,10 +3,46 @@ from django.http import HttpResponse
 from PresList.models import Sender, Product, Category, Price, Feedback
 
 
+
+def home_page(request):
+   senders = Sender.objects.all()
+   return render(request, 'homepage.html',{'senders': senders})
+
+def new_list(request):
+   newsender_ = Sender.objects.create(first_name=request.POST['one'],last_name=request.POST['last'],address=request.POST['address'])
+   return redirect(f'/{newsender_.id}/view_list')
+    
+def addsend_id(request, sender_id):
+   sender_ = Sender.objects.get(id=sender_id)  
+   Product.objects.create(product_name=request.POST['prodname'],product_details=request.POST['proddetails'],product_type=request.POST['prodtype'], sender=sender_)
+   return redirect(f'/{sender_.id}/view_list') 
+   
+def view_list(request, sender_id):    
+   sender_ = Sender.objects.get(id=sender_id)
+   return render(request, 'registration.html', {'sender': sender_})
+   
+def edit(request, id):
+   sender=Sender.objects.get(id=id)
+   gas = {'sender':sender}
+   return render(request, 'edilete.html', gas)
+
+def update (request, id):
+   sender=Sender.objects.get(id=id)
+   sender.first_name=request.POST['one']
+   sender.last_name=request.POST['last']
+   sender.Address=request.POST['address']
+   sender.save()
+   return redirect('/')
+
+def delete(request, id):
+    sender=Sender.objects.get(id=id)
+    sender.delete()
+    return redirect('/')
+
+'''
 def home_page(request):
     senders = Sender.objects.all()
     return render(request, 'homepage.html',{'senders' : senders})
-
 
 def view_list(request):
     #sender_= Sender.objects.get(id=sender_id)
@@ -23,6 +59,7 @@ def view4(request):
 def view5(request):
     #sender_= Sender.objects.get(id=sender_id)
     return render(request, 'model5.html')
+    '''
 
 
 '''def new_list(request):
